@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AVENGERS CHARACTER SEARCH</title>
+    <title>AVENGERS CHARACTER LOOKUP</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>AVENGERS CHARACTER SEARCH</h1>
+        <h1>AVENGERS CHARACTER LOOKUP</h1>
+        <p>Type a superhero name or alias, or leave blank to see all.</p>
     </header>
 
     <main>
         <form id="lookup-form">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="search" placeholder="e.g. Ironman, Hulk">
             <button id="search-btn">Search</button>
         </form>
+
+        <div id="result"></div>
     </main>
 
     <script src="app.js"></script>

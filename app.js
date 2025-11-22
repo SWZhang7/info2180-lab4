@@ -1,17 +1,27 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const searchBtn = document.getElementById('search-btn');
+document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('lookup-form');
+    var searchInput = document.getElementById('search');
+    var resultDiv = document.getElementById('result');
 
-    searchBtn.addEventListener('click', (event) => {
-        event.preventDefault();
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-        fetch('superheroes.php')
-            .then(response => response.text())
-            .then(data => {
-                alert(data);    
+        var query = searchInput.value.trim();
+        var url = 'superheroes.php';
+
+        if (query !== '') {
+            url += '?query=' + encodeURIComponent(query);
+        }
+
+        fetch(url)
+            .then(function (response) {
+                return response.text();
             })
-            .catch(error => {
-                alert("An error occurred while fetching data.");
-                console.error(error);
+            .then(function (data) {
+                resultDiv.innerHTML = data;
+            })
+            .catch(function () {
+                resultDiv.textContent = 'An error occurred while fetching data.';
             });
     });
 });
